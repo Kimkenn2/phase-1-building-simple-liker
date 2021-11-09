@@ -23,32 +23,34 @@ const errorModal = document.getElementById("modal")
 errorModal.classList.add(`hidden`)
 
 const likeSymbol = document.querySelector(".like-glyph")
-likeSymbol.addEventListener("click", mimicServerCall)
+likeSymbol.addEventListener("click",() => {
+  mimicServerCall().then((value) => {
 
+    if (value = "Pretend remote server notified of action!" && errorModal.classList.contains(`hidden`) == false){
+      errorModal.className += `hidden`;
+      console.log(value)};
+      likeSymbol.innerHTML = FULL_HEART
+      likeSymbol.classList.add("activated-heart")
+      const filledHeart = document.querySelector(".activated-heart")
 
-mimicServerCall().then((value) => {
-
-  if (value = "Pretend remote server notified of action!" && errorModal.classList.contains(`hidden`) == false){
-    errorModal.className += `hidden`;
-    console.log(value)};
-    likeSymbol.innerHTML = FULL_HEART
-    likeSymbol.classList.add("activated-heart")
-  }
-).catch ((error) => {
-  if (value = "Random server error. Try again.") {
-    errorModal.classList.remove("hidden");
-  }
-  setTimeout(() => {errorModal.classList.add("hidden")}, 3000)
-  console.error(error);
-
+      filledHeart.addEventListener("click", removeRedHeart)
+    }
+  ).catch ((error) => {
+    if (value = "Random server error. Try again.") {
+      errorModal.classList.remove("hidden");
+    }
+    setTimeout(() => {errorModal.classList.add("hidden")}, 3000)
+    console.error(error);
+  
+  })
 })
 
-const filledHeart = document.querySelector(".activated-heart")
+// debugger
 
-filledHeart .addEventListener("click", removeRedHeart)
 
-function removeRedHeart() {
-  filledHeart.classList.remove("activated-heart");
+function removeRedHeart(e) {
+  console.log(e.target)
+  e.target.classList.remove("activated-heart");
   likeSymbol.innerHTML = EMPTY_HEART
 }
 
