@@ -23,3 +23,9 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
+const errorModal = document.getElementById("modal")
+errorModal.className += `hidden`
+
+const likeSymbol = document.getElementsByClassName("like-glyph")
+likeSymbol.addEventListener("click", mimicServerCall)
